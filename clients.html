@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth scroll-pt-[130px]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عملاؤنا | Byte Trade International</title>
+    <meta name="description" content="قائمة عملاء Byte Trade International — أكثر من 100 جهة حكومية وخاصة في مصر.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="icon" href="https://i.ibb.co/tpYRk7G7/Screenshot-2026-08-11-172147-1-2.png" type="image/png">
+
+    <!-- نفس Tailwind المُولَّد -->
+    <link rel="stylesheet" href="./styles.tailwind.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --ink: #FFFFFF;
+            --ink-2: #F9FAFB;
+            --surface: #F3F4F6;
+            --surface-2: #E5E7EB;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hi: rgba(0, 0, 0, 0.16);
+            --text: #111827;
+            --text-dim: #4B5563;
+            --amber: #D4A24C;
+            --teal: #3FA9A0;
+            --verified: #6FCF97;
+        }
+        body { font-family: 'Cairo', 'Inter', sans-serif; background: linear-gradient(180deg, #f8fafc 0%, #eef3ff 100%); color: var(--text); }
+        .font-mono-tag { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.08em; }
+        .font-display { font-family: 'Noto Kufi Arabic', sans-serif; }
+
+        .chip {
+            background: rgba(255,255,255,0.7);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .chip:hover {
+            background: var(--surface-2);
+            transform: translateY(-2px);
+            border-color: var(--amber);
+        }
+        .sector-card {
+            background: rgba(255,255,255,0.85);
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+        .sector-card:hover { border-color: var(--border-hi); }
+
+        .filter-btn {
+            transition: all 0.25s ease;
+            background: white;
+            border: 1px solid var(--border);
+        }
+        .filter-btn:hover { border-color: var(--amber); color: var(--amber); }
+        .filter-btn.active {
+            background: var(--amber);
+            color: white;
+            border-color: var(--amber);
+        }
+
+        .search-input {
+            background: white;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--amber);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 162, 76, 0.15);
+        }
+
+        .client-chip.hidden-chip { display: none !important; }
+
+        .no-results {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* When only one sector card is visible (e.g. a category filter is active),
+           center it and let it use a comfortable width instead of sitting stuck
+           in the first grid column. */
+        #clientsGrid.single-card-mode {
+            display: block;
+        }
+        #clientsGrid.single-card-mode .sector-card {
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Blueprint corner effect */
+        .blueprint { position: relative; }
+        .blueprint::before, .blueprint::after {
+            content: "";
+            position: absolute;
+            width: 14px; height: 14px;
+            border-color: var(--border-hi);
+            transition: all 0.3s ease;
+        }
+        .blueprint::before {
+            top: -1px; right: -1px;
+            border-top: 1.5px solid var(--border-hi);
+            border-right: 1.5px solid var(--border-hi);
+        }
+        .blueprint::after {
+            bottom: -1px; left: -1px;
+            border-bottom: 1.5px solid var(--border-hi);
+            border-left: 1.5px solid var(--border-hi);
+        }
+        .blueprint:hover::before, .blueprint:hover::after {
+            width: 20px; height: 20px;
+            border-color: var(--amber);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden text-right">
+
+    <!-- الهيدر (تم إصلاح أيقونة السلة الفارغة وإضافة قائمة الموبايل المفقودة) -->
+    <header id="main-header" class="w-full fixed top-0 left-0 right-0 z-50 shadow-sm transition-transform duration-300 ease-in-out bg-white/90 backdrop-blur-md py-1">
+        <nav class="flex items-center justify-between p-4 md:px-8 lg:px-16 w-full relative">
+            <div class="flex items-center gap-3 md:gap-4 order-1">
+                <!-- تم إصلاح: الأيقونة كانت SVG فارغة بدون مسار (غير مرئية)، وكانت تشير إلى index.html#cart وهو عنصر غير موجود -->
+                <a href="index.html" class="relative text-gray-700 hover:text-accent transition-colors" aria-label="سلة المشتريات">
+                    <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </a>
+            </div>
+            <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2 md:relative md:left-auto md:translate-x-0 order-2 md:order-3 z-10">
+                <img src="https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/57861045117.png" alt="Byte Trade Logo" class="h-14 md:h-16 w-auto object-contain drop-shadow-md">
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-semibold text-slate-700 order-3 md:order-2">
+                <a href="index.html" class="hover:text-accent transition-colors">الرئيسية</a>
+                <a href="index.html#products" class="hover:text-accent transition-colors">المنتجات</a>
+                <a href="index.html#byte-about" class="hover:text-accent transition-colors">من نحن</a>
+                <span class="text-accent">عملاؤنا</span>
+                <a href="index.html#contact" class="hover:text-accent transition-colors">تواصل معنا</a>
+            </div>
+        </nav>
+    </header>
+    <!-- تمت إضافة قائمة الموبايل: هذه الصفحة لم يكن بها أي وسيلة تنقل على الموبايل إطلاقاً (القائمة الرئيسية hidden md:flex) -->
+    <div class="md:hidden fixed top-3.5 right-4 z-[60] inline-flex" id="mobile-menu-dropdown">
+        <button id="mobile-menu-toggle-btn" type="button"
+            class="flex items-center justify-center p-2 text-gray-900 hover:text-accent bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-gray-200/60 transition active:scale-95"
+            aria-haspopup="menu" aria-expanded="false" aria-label="القائمة"
+            onclick="const p=document.getElementById('mobile-menu-panel'); p.classList.toggle('hidden'); this.setAttribute('aria-expanded', p.classList.contains('hidden') ? 'false' : 'true');">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12h16" />
+                <path d="M4 18h16" />
+                <path d="M4 6h16" />
+            </svg>
+        </button>
+        <div id="mobile-menu-panel" class="hidden absolute top-full right-0 mt-3 w-64 bg-white border border-slate-100 shadow-2xl rounded-2xl z-[70] overflow-hidden" role="menu" aria-orientation="vertical">
+            <div class="p-2 space-y-0.5">
+                <a href="index.html" class="flex items-center gap-x-3 py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-blue-50 hover:text-accent transition-colors" role="menuitem">
+                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fas fa-house text-xs"></i></span>
+                    الرئيسية
+                </a>
+                <a href="index.html#products" class="flex items-center gap-x-3 py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-blue-50 hover:text-accent transition-colors" role="menuitem">
+                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fas fa-boxes-stacked text-xs"></i></span>
+                    المنتجات
+                </a>
+                <a href="index.html#byte-about" class="flex items-center gap-x-3 py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-blue-50 hover:text-accent transition-colors" role="menuitem">
+                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fas fa-circle-info text-xs"></i></span>
+                    من نحن
+                </a>
+                <a href="index.html#contact" class="flex items-center gap-x-3 py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-blue-50 hover:text-accent transition-colors" role="menuitem">
+                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fas fa-phone text-xs"></i></span>
+                    تواصل معنا
+                </a>
+                <span class="flex items-center gap-x-3 py-2.5 px-3 rounded-xl text-sm font-semibold text-accent bg-blue-50">
+                    <span class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-accent"><i class="fas fa-users text-xs"></i></span>
+                    عملاؤنا
+                </span>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('click', function (e) {
+        const wrap = document.getElementById('mobile-menu-dropdown');
+        const panel = document.getElementById('mobile-menu-panel');
+        if (wrap && panel && !wrap.contains(e.target)) {
+            panel.classList.add('hidden');
+            document.getElementById('mobile-menu-toggle-btn').setAttribute('aria-expanded', 'false');
+        }
+    });
+    </script>
+
+    <!-- Main Content -->
+    <main class="pt-28 md:pt-36 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Hero -->
+            <div class="text-center mb-10 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <span class="font-mono-tag text-xs uppercase text-[var(--amber)]">Trusted By Industry Leaders</span>
+                </div>
+                <h1 class="font-display text-3xl md:text-5xl font-bold mb-4">شركاء النجاح</h1>
+                <p class="text-[var(--text-dim)] max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
+                    نفخر بثقة أكثر من <span class="text-[var(--amber)] font-bold font-mono-tag">100</span> جهة حكومية وخاصة في مصر.
+                    كل جهة في القائمة التالية تم التعامل معها بعقود رسمية وموثقة.
+                </p>
+            </div>
+
+            <!-- Search & Filter -->
+            <div class="mb-8 space-y-4 reveal" style="--d:0.1s">
+                <div class="relative max-w-xl mx-auto">
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-dim)]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <input type="text" id="clientSearch" placeholder="ابحث في قائمة العملاء "
+                           class="search-input w-full rounded-xl pr-12 pl-4 py-3.5 text-sm md:text-base text-[var(--text)] placeholder-[var(--text-dim)]">
+                    <button id="clearSearch" class="hidden absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-dim)] hover:text-red-500 transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2" id="filterContainer">
+                    <button class="filter-btn active font-mono-tag text-xs rounded-full px-4 py-2" data-filter="all">الكل</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="edu">التعليم</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="gov">الحكومة</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="health">الصحة</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="sport">الرياضة</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="private">القطاع الخاص</button>
+                    <button class="filter-btn font-mono-tag text-xs rounded-full px-4 py-2" data-filter="infra">البنية التحتية</button>
+                </div>
+            </div>
+
+            <!-- Results Counter -->
+            <div class="text-center mb-6 reveal" style="--d:0.15s">
+                <span class="font-mono-tag text-xs text-[var(--text-dim)]">
+                    النتائج: <span id="resultCount" class="text-[var(--amber)] font-bold">106</span> جهة
+                </span>
+            </div>
+
+            <!-- Clients Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="clientsGrid">
+
+                <!-- التعليم -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="edu">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--amber)]/10 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-[var(--amber)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--amber)]">التعليم والجامعات</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">22</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة القاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة الإسكندرية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة عين شمس</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة المصرية اليابانية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة بنها</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة حلوان</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة الزقازيق</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة دمنهور</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة بني سويف</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة المنوفية الأهلية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة الغردقة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الهندسة - جامعة القاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الآداب - جامعة حلوان</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الحقوق - جامعة الإسكندرية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الحاسبات - جامعة بنها</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الطب - جامعة بنها</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الحقوق - جامعة الزقازيق</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الآداب - جامعة الزقازيق</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية الزراعة - جامعة الزقازيق</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">كلية التربية - جامعة عين شمس</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">معهد علوم الليزر - جامعة القاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جامعة الإسكندرية - فرع مرسى مطروح</span>
+                    </div>
+                </div>
+
+                <!-- الحكومة -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="gov">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 flex items-center justify-center">
+                            <i class="fas fa-landmark text-[var(--teal)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--teal)]">الحكومة والقضاء</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">18</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مكتب النائب العام</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الداخلية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الدفاع</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الإسكان</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة التربية والتعليم</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الجهاز المركزي للتعبئة العامة والإحصاء</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة التخطيط</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الاقتصاد والتجارة الخارجية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الإعلام</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الأوقاف</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الزراعة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">وزارة الإنتاج الحربي</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">محافظة بورسعيد</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">محافظة مطروح</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">محافظة كفر الشيخ</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">محافظة الوادي الجديد</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الهيئة العامة لأبنية دور المحاكم</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">هيئة المجتمعات العمرانية الجديدة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الوحدة المحلية - الوادي الجديد</span>
+                    </div>
+                </div>
+
+                <!-- الصحة -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="health">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--amber)]/10 flex items-center justify-center">
+                            <i class="fas fa-hospital text-[var(--amber)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--amber)]">الصحة والعلاج</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">14</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مستشفى الدعاة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مبرة مصر القديمة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مستشفى إمبابة العام</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مستشفى بولاق الدكرور</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">هيئة الأمصال واللقاحات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية بالقاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية بشبين الكوم</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية بتلا (منوفية)</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية بمنوف</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية ببركة السبع</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الإدارة الصحية بالباجور</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مديرية الطب البيطري</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المؤسسة العلاجية بالقاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مركز بحوث أمراض العيون</span>
+                    </div>
+                </div>
+
+                <!-- الرياضة -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="sport">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 flex items-center justify-center">
+                            <i class="fas fa-futbol text-[var(--teal)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--teal)]">الرياضة والسياحة</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">6</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">هيئة إستاد القاهرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">اتحاد كرة القدم</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">إيجيبت هوتيلز</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">فرندز للسياحة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة البيه للسياحة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">منتجع العائلات بالغردقة</span>
+                    </div>
+                </div>
+
+                <!-- القطاع الخاص -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="private">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--amber)]/10 flex items-center justify-center">
+                            <i class="fas fa-industry text-[var(--amber)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--amber)]">القطاع الخاص والصناعي</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">25</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مرسيدس بنز</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">النصر للزجاج والبلور</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المعهد القومي للاتصالات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة قها للصناعات الكيماوية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الشركة العربية البريطانية للصناعات الديناميكية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة سورناجا للسيراميك</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة النيل لصناعة وإصلاح السيارات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة مصر لأعمال الأسمنت المسلح</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">النساجون الشرقيون</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة نجع حمادى لإنتاج وتصنيع الأخشاب</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة الشرق الأوسط للغاز والطاقة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة ميجا للغاز والطاقة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة النمر للمقاولات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة الدار للمقاولات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة كونسبت للمقاولات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">حسن درة للمقاولات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة المنزل لصناعة الأثاث</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة صن وير - الإسكندرية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الشركة العربية للحاسبات</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة ميدي سيرفس للمستلزمات الطبية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة لايف تريد للمستلزمات الطبية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة شوف العالمية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة بيوتي إن جروب</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">دار القارئ العربي للنشر</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جريدة الرأي العام</span>
+                    </div>
+                </div>
+
+                <!-- البنية التحتية -->
+                <div class="sector-card blueprint rounded-2xl p-6" data-category="infra">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-[var(--teal)] text-sm"></i>
+                        </div>
+                        <h5 class="font-display font-bold text-sm text-[var(--teal)]">الخدمات والبنية التحتية</h5>
+                        <span class="font-mono-tag text-xs text-[var(--text-dim)] mr-auto count-badge">21</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 client-chips">
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شركة مياه الشرب والصرف الصحي - مطروح</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">صرف صحي الإسكندرية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مركز معلومات شبكات مرافق المنوفية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المركز العام لمعلومات شبكات مرافق القاهرة الكبرى</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مكتبة مصر العامة بمطروح</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مديرية التربية والتعليم - الوادي الجديد</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">إدارة التربية والتعليم - الداخلة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">إدارة التربية والتعليم - الفرافرة</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">مديرية الإسكان بمطروح</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">جهاز مشروعات أراضي وزارة الداخلية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المركز الديموجرافي - وزارة التخطيط</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المعهد الفني للقوات المسلحة بالعباسية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">شرطة المسطحات المائية - المعادي</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">المعهد العالي لتكنولوجيا الطيران (مطار إمبابة)</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">هيئة الطاقة الذرية - مركز الأمان النووي</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">نقابة الصيادلة - دمياط</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">نقابة الصيادلة - الغربية</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">النقابة العامة للزراعة والري والصيد</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">النقابة العامة لصناعات البناء والأخشاب</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الجمعية العلمية المركزية للتنمية - الوادي الجديد</span>
+                        <span class="chip font-mono-tag text-xs border border-[var(--border)] rounded-full px-3 py-1.5">الوحدة المحلية لمركز المحلة الكبرى</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Note -->
+            <div class="mt-12 p-6 border border-[var(--border)] rounded-2xl bg-white/60 text-center reveal">
+                <p class="text-[var(--text-dim)] text-sm leading-relaxed font-mono-tag">
+                    + 106 جهة تم توريد وتركيب وصيانة أنظمتها حتى الآن، موثّقة بأوامر توريد وعقود صيانة سارية.
+                    تشمل القائمة أعلاه جميع الجهات المذكورة في سابقة الأعمال بالإضافة إلى الجهات المركزية والهيئات القومية والقطاعات الرئيسية.
+                </p>
+            </div>
+
+            <!-- Back Link -->
+            <div class="text-center mt-8 reveal">
+                <a href="index.html#byte-about" class="inline-flex items-center gap-2 font-mono-tag text-sm text-[var(--text-dim)] hover:text-[var(--amber)] transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                    <span>العودة لصفحة من نحن</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border)] bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-mono-tag text-xs text-[var(--text-dim)]">
+                Byte Trade International — EST. 2000
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== Search & Filter Logic ==========
+        const searchInput = document.getElementById('clientSearch');
+        const clearBtn = document.getElementById('clearSearch');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const resultCount = document.getElementById('resultCount');
+        const sectorCards = document.querySelectorAll('.sector-card');
+
+        let currentFilter = 'all';
+
+        function updateResults() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let totalVisible = 0;
+            let visibleCardCount = 0;
+
+            // Toggle clear button
+            clearBtn.classList.toggle('hidden', searchTerm === '');
+
+            sectorCards.forEach(card => {
+                const category = card.dataset.category;
+                const chips = card.querySelectorAll('.chip');
+                const countBadge = card.querySelector('.count-badge');
+                let cardVisible = false;
+                let visibleChips = 0;
+
+                // Category filter
+                if (currentFilter !== 'all' && category !== currentFilter) {
+                    card.style.display = 'none';
+                    return;
+                }
+
+                // Search filter per chip
+                chips.forEach(chip => {
+                    const text = chip.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        chip.classList.remove('hidden-chip');
+                        visibleChips++;
+                        cardVisible = true;
+                    } else {
+                        chip.classList.add('hidden-chip');
+                    }
+                });
+
+                // Update badge count
+                if (countBadge) countBadge.textContent = visibleChips;
+
+                if (cardVisible) {
+                    card.style.display = '';
+                    totalVisible += visibleChips;
+                    visibleCardCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // When a single sector card remains (category filter active), center it
+            // instead of leaving it stuck in the first grid column.
+            document.getElementById('clientsGrid').classList.toggle('single-card-mode', visibleCardCount === 1);
+
+            resultCount.textContent = totalVisible;
+
+            // Show "no results" message if needed
+            const existingNoResults = document.getElementById('noResultsMsg');
+            if (totalVisible === 0) {
+                if (!existingNoResults) {
+                    const msg = document.createElement('div');
+                    msg.id = 'noResultsMsg';
+                    msg.className = 'no-results col-span-full text-center py-12';
+                    msg.innerHTML = `
+                        <div class="w-16 h-16 bg-[var(--surface)] rounded-full flex items-center justify-center mx-auto mb-4 text-[var(--text-dim)] text-2xl">
+                            <i class="fas fa-search-minus"></i>
+                        </div>
+                        <div class="text-xl font-bold text-[var(--text)] mb-2">لا توجد نتائج مطابقة</div>
+                        <p class="text-[var(--text-dim)]">جرّب كلمة بحث أخرى أو اختر قسم مختلف</p>
+                    `;
+                    document.getElementById('clientsGrid').appendChild(msg);
+                }
+            } else if (existingNoResults) {
+                existingNoResults.remove();
+            }
+        }
+
+        searchInput.addEventListener('input', updateResults);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            updateResults();
+            searchInput.focus();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                updateResults();
+            });
+        });
+
+        // Reveal animation on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="analytics.js"></script>
+    <script defer src="meta-pixel.js"></script>
+</body>
+</html>

@@ -1,0 +1,992 @@
+/* ============================================================
+   Byte Trade International — Stylesheet
+   ملف التنسيقات (CSS) — تم فصله من ملف index.html الأصلي
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 130px;
+}
+body {
+    font-family: "Cairo", "Inter", sans-serif;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef3ff 100%);
+    color: #0f172a;
+}
+.gradient-text {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.06);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    will-change: auto;
+}
+.glass-card:hover {
+    will-change: transform, box-shadow;
+}
+/* أضف في styles.css جوه :root أو body */
+body {
+    font-synthesis: none;
+}
+
+.product-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 380px;
+}
+@media (min-width: 1024px) {
+    .glass-card {
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(12px);
+    }
+}
+.glass-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 24px 60px rgba(37, 99, 235, 0.12);
+    border-color: rgba(37, 99, 235, 0.18);
+}
+.product-card {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+    .product-card:hover {
+        transform: translateY(-8px) rotateX(2deg);
+        box-shadow: 0 22px 55px rgba(15, 23, 42, 0.12);
+    }
+}
+.brand-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+.brand-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 18px 36px rgba(37, 99, 235, 0.10);
+}
+.category-btn:hover {
+    background: rgba(37, 99, 235, 0.06);
+}
+.service-card {
+    position: relative;
+    isolation: isolate;
+}
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.35) 45%,
+        transparent 65%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+}
+.service-card:hover::before {
+    transform: translateX(120%);
+}
+.hero-bg {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(135deg, #f8fafc 0%, #edf4ff 35%, #f8fafc 100%);
+}
+.hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* الطبقة الشفافة الغامقة اللي هتخلي الكلام الأبيض ينطق وتداري بكسلة الصورة */
+.hero-media .dark-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(15, 23, 42, 0.4) 0%,
+        rgba(15, 23, 42, 0.85) 100%
+    );
+    z-index: 1;
+}
+
+.hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+.hero-glow {
+    display: none;
+}
+.grid-pattern {
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(148, 163, 184, 0.14) 1px,
+        transparent 0
+    );
+    background-size: 40px 40px;
+}
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+.stat-counter {
+    font-variant-numeric: tabular-nums;
+}
+.nav-blur {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(148, 163, 184, 0.18);
+}
+@media (min-width: 1024px) {
+    .nav-blur {
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.8);
+    }
+}
+.category-btn.active {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.18);
+}
+.brand-card.active {
+    background: rgba(37, 99, 235, 0.06);
+    border-color: rgba(37, 99, 235, 0.28);
+}
+.brand-card.active .text-gray-300 {
+    color: #0f172a;
+}
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.stat-row {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.scroll-reveal.visible .stat-row {
+    opacity: 1;
+    transform: translateY(0);
+}
+.stat-row:nth-child(1) { transition-delay: 0.05s; }
+.stat-row:nth-child(2) { transition-delay: 0.2s; }
+.stat-row:nth-child(3) { transition-delay: 0.35s; }
+.stat-row:nth-child(4) { transition-delay: 0.5s; }
+@keyframes productCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.product-card-enter {
+    animation: productCardIn 0.45s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+    .product-card-enter {
+        animation: none;
+    }
+}
+.mouse-lift {
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+.mouse-lift:hover {
+    box-shadow: 0 18px 38px rgba(37, 99, 235, 0.10);
+}
+/* ============================================================
+   تنسيق التباعد الاحترافي للطباعة العربية (Arabic Typography & Spacing)
+   ============================================================ */
+
+/* 1. زيادة التباعد الرأسي الشامل للجسم والفقرات وتحسين تباين اللون الأساسي */
+body {
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    color: #0f172a;
+}
+
+/* 2. تحسين تباعد سطور الفقرات وإعطائها لون يسهل قراءته (تحسين التباين) */
+p, .text-lg, .text-xl, .text-base {
+    line-height: 1.85;
+    color: #334155;
+}
+
+/* 3. فك ضغط العناوين الكبيرة */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text-2xl,
+.text-3xl,
+.text-4xl,
+.text-5xl,
+.text-6xl,
+.text-7xl {
+    line-height: 1.4;
+}
+
+/* 4. إصلاح خطأ "تقطيع الكلمات العربية" */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] span {
+    letter-spacing: 0px;
+}
+
+/* 5. ضبط التباعد الرأسي الفاصل بين كل عنوان والفقرة التابعة له */
+h1 + p, h2 + p, h3 + p, h4 + p {
+    margin-top: 0.85rem;
+}
+
+/* 6. تحسين قراءة النصوص داخل الكروت الصغيرة (Cards) */
+.glass-card p, .service-card p {
+    line-height: 1.65;
+}
+/* ============================================================
+   Contact Us Form Custom Styles
+   ============================================================ */
+.contact-us {
+    background: #fff;
+    padding: 40px;
+    border-radius: 30px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.title h1 {
+    color: #535274;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.form,
+.form-items {
+    width: 100%;
+}
+
+.form-items {
+    position: relative;
+}
+
+/* تعديل المسافات لتتناسب مع اللغة العربية (الأيقونة على اليمين) */
+.form-items .input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px 45px 15px 15px;
+    box-sizing: border-box;
+    background: #ebeef1;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.form-items .input:focus {
+    border-color: #827ffe;
+    background: #fff;
+}
+
+.form-items .input.message {
+    height: 125px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    resize: none;
+}
+
+/* وضع الأيقونات على اليمين لتناسب (RTL) */
+.form-items .fas {
+    position: absolute;
+    top: 17px;
+    right: 18px;
+    color: #9a99aa;
+}
+
+.btn {
+    background: #2563eb; /* تم تغييره للأزرق ليتماشى مع لون موقعك */
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn .fas {
+    margin-right: 10px; /* المسافة للسهم المتجه يساراً */
+    font-size: 14px;
+}
+
+/* =========================================
+   تنسيق أيقونات التواصل (دائرية وملونة)
+   ========================================= */
+.social-icons {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    width: 200px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+}
+
+/* تنسيق الدائرة المحيطة بالأيقونة */
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    text-decoration: none; /* لمنع ظهور أي خطوط تحت الروابط */
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ضبط حجم ومكان الأيقونة داخل الدائرة */
+.social-icons a i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff; /* لون الأيقونة أبيض */
+    font-size: 20px;
+}
+
+/* ألوان الخلفيات المخصصة لكل زر */
+.social-icons a.facebook {
+    background-color: #1877f2; /* أزرق فيسبوك */
+}
+
+.social-icons a.whatsapp {
+    background-color: #25d366; /* أخضر واتساب */
+}
+
+.social-icons a.phone {
+    background-color: #0ea5e9; /* أزرق فاتح للمكالمات */
+}
+/* ===== Variant 2: Cyber-Dynamic ===== */
+.hero-title-v2 {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+}
+.hero-title-v2 .v2-glow {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, #f8fafc, #dbeafe, #fbbf24);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: v2Pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes v2Shift {
+    to {
+        background-position: 300% 0;
+    }
+}
+@keyframes v2Pop {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.9);
+        filter: blur(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+.hero-title-v2 .v2-sub {
+    display: block;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.36em !important;
+    padding-right: 0.36em; /* compensates the trailing letter-spacing gap so the text optically centers */
+    text-transform: uppercase;
+    margin-top: 0; /* mt-3 in the HTML now handles the spacing, avoids double-margin */
+    opacity: 0.92;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* لضمان التناسق في الشاشات المختلفة */
+@media (min-width: 768px) {
+    .hero-title-v2 .v2-sub {
+        font-size: 1.85rem;
+        letter-spacing: 0.37em !important;
+    }
+}
+@keyframes v2FadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero-title-v2 .v2-scan {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: 2px;
+    margin-top: 1.75rem;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    background-size: 200% 100%;
+    box-shadow: 0 0 10px 1px rgba(56, 189, 248, 0.7);
+    animation:
+        v2ScanIn 0.4s ease-out 0.9s forwards,
+        v2ScanMove 2.4s linear 1.3s infinite;
+}
+@keyframes v2ScanIn {
+    to {
+        opacity: 1;
+    }
+}
+@keyframes v2ScanMove {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================================
+   Byte Trade - About Section Styles (Light Theme)
+   ============================================================ */
+:root {
+    --ink: #ffffff;
+    --ink-2: #f9fafb;
+    --surface: #f3f4f6;
+    --surface-2: #e5e7eb;
+    --border: rgba(0, 0, 0, 0.08); /* أسود شفاف للحدود */
+    --border-hi: rgba(0, 0, 0, 0.16);
+    --text: #111827; /* أسود داكن للنصوص */
+    --text-dim: #4b5563; /* رمادي داكن للنصوص الفرعية */
+    --amber: #d4a24c;
+    --teal: #3fa9a0;
+    --verified: #6fcf97;
+}
+
+#byte-about {
+    background:
+        radial-gradient(
+            60% 50% at 85% -10%,
+            rgba(212, 162, 76, 0.15),
+            transparent 60%
+        ),
+        radial-gradient(
+        50% 40% at 5% 110%,
+        rgba(63, 169, 160, 0.15),
+        transparent 60%
+    ),
+        var(--ink);
+    color: var(--text);
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+#byte-about .font-display {
+    font-family: "Noto Kufi Arabic", sans-serif;
+}
+#byte-about .font-mono-tag {
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 0.08em;
+}
+
+#byte-about .blueprint {
+    position: relative;
+}
+#byte-about .blueprint::before,
+#byte-about .blueprint::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--border-hi);
+    transition: border-color 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+#byte-about .blueprint::before {
+    top: -1px;
+    right: -1px;
+    border-top: 1.5px solid var(--border-hi);
+    border-right: 1.5px solid var(--border-hi);
+}
+#byte-about .blueprint::after {
+    bottom: -1px;
+    left: -1px;
+    border-bottom: 1.5px solid var(--border-hi);
+    border-left: 1.5px solid var(--border-hi);
+}
+#byte-about .blueprint:hover::before,
+#byte-about .blueprint:hover::after {
+    width: 20px;
+    height: 20px;
+}
+#byte-about .blueprint.accent-amber:hover::before,
+#byte-about .blueprint.accent-amber:hover::after {
+    border-color: var(--amber);
+}
+#byte-about .blueprint.accent-teal:hover::before,
+#byte-about .blueprint.accent-teal:hover::after {
+    border-color: var(--teal);
+}
+
+#byte-about .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--d, 0s);
+}
+#byte-about .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    #byte-about .reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+    #byte-about .gate-draw path {
+        stroke-dashoffset: 0 !important;
+        transition: none !important;
+    }
+}
+
+#byte-about .gate-draw path {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    transition: stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#byte-about .gate-draw.in-view path {
+    stroke-dashoffset: 0;
+}
+
+#byte-about .pillar-icon {
+    transition: transform 0.35s ease;
+}
+#byte-about .pillar:hover .pillar-icon {
+    transform: translateY(-3px) scale(1.06);
+}
+
+#byte-about .chip {
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+#byte-about .chip:hover {
+    transform: translateY(-2px);
+    background-color: var(
+        --surface-2
+    ); /* هيدي لون رمادي فاتح عند المرور عليه */
+}
+
+#byte-about .stat-num {
+    font-variant-numeric: tabular-nums;
+}
+#productsGrid {
+    align-items: stretch;
+}
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.product-card-media {
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
+}
+.product-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+@supports not (aspect-ratio: 4 / 3) {
+    .product-card-media {
+        position: relative;
+        padding-top: 75%;
+    }
+    .product-card-media img {
+        position: absolute;
+        inset: 0;
+    }
+}
+.product-card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.6em;
+}
+@media (min-width: 768px) {
+    .product-card-title {
+        min-height: 3.15em;
+    }
+}
+/* ========== تحسينات الأداء ========== */
+.product-card, .service-card, .brand-card, .glass-card {
+    contain: layout style paint;
+}
+.mouse-lift {
+    will-change: auto;
+}
+#main-header {
+    will-change: transform;
+    transform: translateZ(0);
+}
+img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+}
+/* ========== أنيميشن الطيران للسلة (Fly to Cart) ========== */
+.fly-to-cart-item {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    pointer-events: none;
+    transition:
+        transform 0.7s cubic-bezier(0.55, 0, 0.1, 1),
+        opacity 0.7s ease-in;
+}
+
+@keyframes cartBadgePulse {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.cart-badge-pulse {
+    animation: cartBadgePulse 0.4s ease-in-out;
+}
+/* ========== Clients Page Specific ========== */
+.clients-page .chip {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+}
+.clients-page .sector-card {
+    contain: layout style paint;
+}
+.hidden-chip {
+    display: none !important;
+}
+/* ===== Hero: Linear-style (Light) ===== */
+.bt-hero {
+    --bt-ease: cubic-bezier(0.16, 1, 0.3, 1); /* سريعة في البداية، ناعمة وبطيئة في النهاية */
+    --bt-duration: 1.25s;  /* مدة حركة الكلمة الواحدة */
+    --bt-stagger: 0.16s;   /* التأخير بين كل كلمة والتي تليها */
+    --bt-start: 0.1s;      /* تأخير بداية الحركة */
+    --bt-rise: 48px;       /* مسافة الصعود من الأسفل */
+    --bt-blur: 10px;       /* ضبابية خفيفة في البداية (ضعها 0px لإلغائها) */
+    isolation: isolate;
+}
+
+.bt-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(60% 45% at 50% 0%, rgba(37, 99, 235, 0.09), transparent 70%),
+        radial-gradient(45% 30% at 50% 100%, rgba(56, 189, 248, 0.07), transparent 70%);
+    opacity: 1;
+    transition: opacity 1.8s ease 0.1s;
+}
+.bt-hero.is-armed:not(.is-ready)::before { opacity: 0; }
+
+.bt-hero::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e2e8f0 30%, #e2e8f0 70%, transparent);
+}
+
+.bt-hero__title {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv11", "ss03";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bt-hero__break { flex-basis: 100%; height: 0; }
+
+.bt-word {
+    display: inline-block;
+    color: #0b1220;
+    padding-block: 0.14em;
+    margin-block: -0.14em;
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .bt-word {
+        background: linear-gradient(180deg, #0b1220 0%, #0f172a 55%, #475569 135%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+}
+
+.bt-hero.is-armed .bt-word {
+    opacity: 0;
+    transform: translate3d(0, var(--bt-rise), 0);
+    filter: blur(var(--bt-blur));
+}
+.bt-hero.is-ready .bt-word {
+    animation: bt-rise var(--bt-duration) var(--bt-ease) both;
+    animation-delay: calc(var(--bt-start) + var(--i, 0) * var(--bt-stagger));
+}
+@keyframes bt-rise {
+    from { opacity: 0; transform: translate3d(0, var(--bt-rise), 0); filter: blur(var(--bt-blur)); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0);              filter: blur(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bt-hero .bt-word {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        animation: none !important;
+    }
+    .bt-hero::before { opacity: 1 !important; transition: none !important; }
+}
+
+/* ============ Product Page — Mobile Image Fix ============ */
+@media (max-width: 767px) {
+    main > section:first-of-type > div:first-child {
+        padding: 1rem !important;
+    }
+    main > section:first-of-type img {
+        max-height: 300px;
+        object-fit: contain;
+    }
+}
+
+/* ============ Product Page — Better Mobile Spacing ============ */
+@media (max-width: 767px) {
+    main h1 {
+        font-size: 1.35rem;
+        line-height: 1.4;
+    }
+    main > section {
+        gap: 1rem !important;
+    }
+}
+
+/* ============ Specs Rows — RTL Alignment Fix ============ */
+main section[aria-labelledby="specs-title"] > div > div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+main section[aria-labelledby="specs-title"] [dir="ltr"] {
+    text-align: left;
+}
+/* ===== Hero background (background only, does not touch logo/text animations) ===== */
+.bt-hero {
+  isolation: isolate; /* keeps the background layer behind the content but above the section's white */
+}
+
+.bt-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #ffffff;
+}
+
+/* Mobile: subtle animated white */
+@media (max-width: 767.98px) {
+  .bt-hero-bg {
+    background-image:
+      radial-gradient(60% 40% at 20% 20%, rgba(219, 234, 254, 0.55), transparent 70%),
+      radial-gradient(50% 35% at 80% 75%, rgba(224, 242, 254, 0.5), transparent 70%);
+    background-size: 140% 140%, 140% 140%;
+    animation: btHeroSoftDrift 14s ease-in-out infinite alternate;
+  }
+}
+
+/* Desktop (md and up): static image */
+@media (min-width: 768px) {
+  .bt-hero-bg {
+    background-image: url("https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/8888%20(1).webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+@keyframes btHeroSoftDrift {
+  0%   { background-position: 0% 0%, 100% 100%; }
+  100% { background-position: 100% 60%, 0% 40%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bt-hero-bg { animation: none; }
+}
+/* ===== Text shimmer (a light beam sweeping across the heading) ===== */
+/* Runs on a ::after copy of each word, so the existing .bt-word entrance
+   animation (transform/opacity/etc.) is never overridden. */
+.bt-hero .bt-word {
+  position: relative;
+}
+
+.bt-hero .bt-word::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  color: transparent;
+  background-image: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.9) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: 150% 0;
+  -webkit-background-clip: text;
+          background-clip: text;
+  opacity: 0; /* stays invisible until the intro finishes */
+}
+
+/* Starts only after the intro is ready, staggered word by word */
+.bt-hero.is-ready .bt-word::after {
+  opacity: 1;
+  animation: btTextShimmer 5s ease-in-out infinite;
+  animation-delay: calc(1.6s + var(--i, 0) * 0.25s);
+}
+
+@keyframes btTextShimmer {
+  0%   { background-position: 150% 0; }
+  35%  { background-position: -50% 0; }  /* beam crosses the word */
+  100% { background-position: -50% 0; }  /* rests until the next pass */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bt-hero.is-ready .bt-word::after { animation: none; opacity: 0; }
+}
+
+/* Optional fallback: hides the logo on desktop even before you rebuild Tailwind */
+@media (min-width: 768px) {
+  .bt-hero .bt-logo { display: none; }
+}
+/* ===== Desktop: white heading over the photo ===== */
+@media (min-width: 768px) {
+  .bt-hero .bt-hero__title {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .bt-hero .bt-hero__title > span {
+    font-size: clamp(2.5rem, 5vw, 4.25rem) !important;
+  }
+
+  /* الكلمة الأساسية: بيضاء نقية وبدون قص للخلفية اللي كان بيعمل حواف غريبة */
+  .bt-hero .bt-word {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  /* طبقة اللمعان: إجبارها على الشفافية عشان متعملش طبقة بيضاء مشوهة مضاعفة فوق النص */
+  .bt-hero .bt-word::after {
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    text-shadow: none !important;
+    background-image: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(125, 211, 252, 0.95) 50%,
+      transparent 60%
+    ) !important;
+  }
+}
+/* ===== Shimmer stability fix ===== */
+
+/* Base word + shimmer copy: same rendering settings on both layers */
+.bt-hero .bt-word,
+.bt-hero .bt-word::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.bt-hero .bt-word {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.bt-hero .bt-word::after {
+  /* Alignment fix: .bt-word has padding-block: 0.14em, but the copy was pinned
+     to top: 0, so it sat 0.14em higher than the real text. */
+  top: 0.14em;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
