@@ -36,9 +36,9 @@ window.baseProducts = [
     { name: 'K 500 Black Badgy 100/200', model: 'Badgy 100/200', code: 'CBGR0500K', brand: 'EVOLIS', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 1500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/EVOLIS/CBGR0500K.jpg' },
 
     // ---------------- MAGICARD ----------------
-    { name: 'YMCKO 300 Color Rio Pro/Enduro/Pronto original', model: 'Rio Pro/Enduro/Pronto', code: 'MA300', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 5000, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA300.jpg' },
+    { name: 'YMCKO 300 Color Rio Pro/Enduro/Pronto original', model: 'Rio Pro/Enduro/Pronto', code: 'MA300', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 5500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA300.jpg' },
     { name: 'YMCKO 100 Color Rio Pro/Enduro/Pronto', model: 'Rio Pro/Enduro/Pronto', code: 'MA100', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Order', price: 2000, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA100.jpg' },
-    { name: 'ymcKO 450 half-panel Rio Pro/Enduro/Pronto', model: 'Rio Pro/Enduro/Pronto', code: 'MA450', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 5200, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA450.jpg' },
+    { name: 'ymcKO 450 half-panel Rio Pro/Enduro/Pronto', model: 'Rio Pro/Enduro/Pronto', code: 'MA450', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 5700, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA450.jpg' },
     { name: 'KO 650 Black Rio Pro/Enduro/Pronto', model: 'Rio Pro/Enduro/Pronto', code: 'MA600', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Order', price: 3500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA600.png' },
     { name: 'YMCKOKO 250 Color/Black Rio Pro/Enduro/Pronto', model: 'Rio Pro/Enduro/Pronto', code: 'MA250', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Order', price: 5200, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/MA250.jpg' },
     { name: 'YMCKO 350 Color Avalon/Rio', model: 'Avalon/Rio', code: 'M9005-751 LC1/D', brand: 'MAGICARD', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Order', price: 5500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/Magicard/M9005-751%20LC1D.jpg' },
@@ -67,9 +67,9 @@ window.baseProducts = [
     { name: 'Tag Sticker UHF 860-915MHz MR3', model: 'U-ST1', code: 'STICKER-UHF-MR3-01', brand: 'Generic', group: 'access_control', category: 'RFID Stickers', status: 'Stock', price: 8 ,moq: 10, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/access_control/STICKER-UHF-MR3-01.jpg' },
 
     // ---------------- HITI ----------------
-    { name: 'Hiti YMCKO 560 Half-Panel Ribbon for CS-2 Series', model: 'CS-2', code: '16-842E280-D004', brand: 'Hiti', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 3500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D004.png' },
-    { name: 'Hiti K 1000 Black Ribbon for CS-2 Series', model: 'CS-2', code: '16-842E280-D005', brand: 'HITI', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 2000, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D005.jpg' },
-    { name: 'Hiti YMCKO 400 Color Ribbon for CS-2', model: 'CS-2', code: '16-842E280-D003', brand: 'HITI', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 3500, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D003.jpg' },
+    { name: 'Hiti YMCKO 560 Half-Panel Ribbon for CS-2 Series', model: 'CS-2', code: '16-842E280-D004', brand: 'Hiti', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 4200, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D004.png' },
+    { name: 'Hiti K 1000 Black Ribbon for CS-2 Series', model: 'CS-2', code: '16-842E280-D005', brand: 'HITI', group: 'ribbons', category: ' Ribbons', status: 'Stock', price: 2000, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D005.jpg' },
+    { name: 'Hiti YMCKO 400 Color Ribbon for CS-2', model: 'CS-2', code: '16-842E280-D003', brand: 'HITI', group: 'ribbons', category: 'YMCKO Ribbons', status: 'Stock', price: 4000, image: 'https://cdn.jsdelivr.net/gh/youssefnabih76-netizen/byte-trade-images/hiti/16-842E280-D003.jpg' },
 
    // ---------------- DATACARD ----------------
 
@@ -166,3 +166,33 @@ window.baseProducts = window.baseProducts.map(function(p) {
 
     return Object.assign({}, p, { category: category });
 });
+
+
+
+
+//evolis high trust
+//R3011 (200)         (4)
+//1/2 R3013 E (400)   (4)
+//fargo
+//04520 (500)         (5)
+//084053 clear 1500   (4)
+
+
+//R5F208C140 (300)    (17)
+//R5F008S140 (300)    (3)
+ 
+
+//R5F200M100          (3)
+//R5F002EAA  (200)    (5)
+//R5F008EAA  (300)    (1)
+
+
+
+//R5H004NAA  (200)    (5)
+//R5F008S140 (300)    (4)
+//RCT023NAA  (300)    (1)
+
+//ZC100/300 Series                                  (5)
+//compatible P110/P120  800015-940                  (4)
+//compatible ZXP3       800033-301   BLACK  (2000)  (8)
+//compatible ZXP3       800033-340SC YMCKO  (280)   (6)
